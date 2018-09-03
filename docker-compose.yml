@@ -1,0 +1,21 @@
+zf:
+  build: .
+  dockerfile: Dockerfile
+  ports:
+    - "8080:80"
+  volumes:
+    - .:/var/www
+  links:
+    - mysql
+
+mysql:
+  image: mysql:5.7
+  ports:
+    - "4490:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: 123
+    MYSQL_USER: zf
+    MYSQL_PASSWORD: 123
+    MYSQL_DATABASE: blog
+  volumes:
+    - .:/var/www:cached
